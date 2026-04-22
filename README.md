@@ -1,17 +1,11 @@
-# Mini CRM Backend
+## How to Run the Project
 
-This project is a simple CRM backend built using Node.js and Express.
+1. Clone the repository
+2. Open backend folder
+3. Run: npm install
+4. Run: node server.js
+5. Open frontend (index.html) OR run using Live Server
 
-## Features
-- Manage leads (add, update, view)
-- REST API endpoints
-- MongoDB integration
-
-## Tech Stack
-- Node.js
-- Express.js
-- MongoDB
-
-## How to Run
-1. Install dependencies: npm install
-2. Start server: node server.js
+Note:
+This project requires backend server to be running.
+Opening index.html directly will not show full functionality.
