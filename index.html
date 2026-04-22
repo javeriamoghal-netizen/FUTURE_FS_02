@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mini CRM</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    input {
+      padding: 10px;
+      margin: 5px;
+      width: 200px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 10px 15px;
+      margin: 5px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .add-btn {
+      background: green;
+      color: white;
+    }
+
+    .load-btn {
+      background: blue;
+      color: white;
+    }
+
+    .update-btn {
+      background: orange;
+      color: white;
+    }
+
+    .delete-btn {
+      background: red;
+      color: white;
+    }
+
+    li {
+      background: white;
+      margin: 10px auto;
+      padding: 15px;
+      width: 60%;
+      border-radius: 8px;
+      box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+      list-style: none;
+    }
+  </style>
+
+</head>
+<body>
+
+  <h1>Mini CRM</h1>
+
+  <h2>Add Lead</h2>
+  <input id="name" placeholder="Name"><br>
+  <input id="email" placeholder="Email"><br>
+  <input id="source" placeholder="Source"><br>
+  <button class="add-btn" onclick="addLead()">Add Lead</button>
+
+  <h2>All Leads</h2>
+  <button class="load-btn" onclick="getLeads()">Load Leads</button>
+
+  <ul id="leadsList"></ul>
+
+<script>
+
+const API = "http://localhost:5000/api/leads";
+
+async function addLead() {
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const source = document.getElementById("source").value;
+
+  await fetch(API, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, email, source })
+  });
+
+  alert("Lead Added");
+  getLeads();
+}
+
+async function getLeads() {
+  const res = await fetch(API);
+  const data = await res.json();
+
+  const list = document.getElementById("leadsList");
+  list.innerHTML = "";
+
+  data.forEach(lead => {
+    const li = document.createElement("li");
+
+    li.innerHTML = `
+      <b>${lead.name}</b><br>
+      ${lead.email}<br>
+      Status: ${lead.status || "new"}<br><br>
+      <button class="update-btn" onclick="updateLead('${lead._id}')">Contacted</button>
+      <button class="delete-btn" onclick="deleteLead('${lead._id}')">Delete</button>
+    `;
+
+    list.appendChild(li);
+  });
+}
+
+async function updateLead(id) {
+  await fetch(API + "/" + id, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ status: "contacted" })
+  });
+
+  getLeads();
+}
+
+async function deleteLead(id) {
+  await fetch(API + "/" + id, {
+    method: "DELETE"
+  });
+
+  getLeads();
+}
+
+</script>
+
+</body>
+</html>
