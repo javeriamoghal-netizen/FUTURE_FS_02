@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Secure Authentication Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- CryptoJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Left Side -->
+
+    <div class="left-panel">
+
+        <h1>🛡 Secure Authentication Dashboard</h1>
+
+        <p>
+            Protect user information with modern cloud security,
+            SQL Injection detection, AES-256 encryption and
+            password hashing.
+        </p>
+
+        <div class="features">
+
+            <div class="feature">
+                <span>🛡</span>
+                <div>
+                    <h3>SQL Injection Protection</h3>
+                    <p>Blocks malicious SQL queries.</p>
+                </div>
+            </div>
+
+            <div class="feature">
+                <span>🔐</span>
+                <div>
+                    <h3>AES-256 Encryption</h3>
+                    <p>Encrypts confidential user information.</p>
+                </div>
+            </div>
+
+            <div class="feature">
+                <span>☁</span>
+                <div>
+                    <h3>Cloud Database</h3>
+                    <p>Securely connected with Supabase.</p>
+                </div>
+            </div>
+
+            <div class="feature">
+                <span>⚡</span>
+                <div>
+                    <h3>Fast & Secure</h3>
+                    <p>Modern responsive authentication system.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Right Side -->
+
+    <div class="right-panel">
+
+        <div class="card">
+
+            <h2>Create Account</h2>
+
+            <p class="subtitle">
+                Register securely to continue.
+            </p>
+
+            <form id="registerForm">
+
+                <label>Username</label>
+
+                <input
+                    type="text"
+                    id="username"
+                    placeholder="Enter username"
+                    required>
+
+                <label>Email</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter email"
+                    required>
+
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter password"
+                    required>
+
+                <button type="submit">
+
+                    Register Securely
+
+                </button>
+
+            </form>
+
+            <div id="result"></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
